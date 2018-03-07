@@ -5,16 +5,22 @@ import com.bingo.guidepro.model.Hunter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HunterService {
     @Autowired
     private HunterDao hunterDao;
 
-    public Hunter get() {
-        return hunterDao.getFirstHunter();
+    public List<Hunter> getHunters() {
+        return hunterDao.getHunters();
     }
 
-    public int add(String firstName) {
-        return hunterDao.add(firstName);
+    public Hunter getHunter(String id) {
+        return hunterDao.getHunter(id);
+    }
+
+    public Hunter deleteHunter(String id) {
+        return hunterDao.deleteHunter(id);
     }
 }
