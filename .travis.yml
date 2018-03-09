@@ -3,3 +3,13 @@ jdk:
   - oraclejdk8
 sudo: true
 script: mvn clean verify
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAI5OMXS5EWHMYJKMA
+  secret_access_key:
+    secure: "Encypted <secret-access-key>=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"
+  region: "us-east-1"  
+  app: "guidepro"
+  env: "guidepro-dev"
+#  bucket_name: "the-target-S3-bucket"
+  
