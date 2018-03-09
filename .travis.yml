@@ -5,11 +5,12 @@ sudo: true
 script: mvn clean verify
 deploy:
   provider: elasticbeanstalk
-  access_key_id: AKIAI5OMXS5EWHMYJKMA
+  access_key_id: $ACCESSKEYID
   secret_access_key:
-    secure: "Encypted <secret-access-key>="
+    secure: "$SECRETACCESSKEY"
   region: "us-east-1"  
   app: "guidepro"
   env: "guidepro-dev"
 #  bucket_name: "the-target-S3-bucket"
-  
+on:
+  branch: master
