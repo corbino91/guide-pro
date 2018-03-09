@@ -17,6 +17,7 @@ public class Hunter {
     private String state;
     private String zipCode;
     private Date dateOfBirth;
+    private String social;
     private char sex;
     private int height;
     private int weight;
@@ -128,6 +129,14 @@ public class Hunter {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getSocial() {
+        return social;
+    }
+
+    public void setSocial(String social) {
+        this.social = social;
     }
 
     public char getSex() {

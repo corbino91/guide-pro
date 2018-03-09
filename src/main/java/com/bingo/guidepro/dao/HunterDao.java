@@ -48,7 +48,7 @@ public class HunterDao {
             hunter.setState(rs.getString("HOME_STATE"));
             hunter.setZipCode(rs.getString("ZIP"));
             hunter.setDateOfBirth(rs.getDate("DOB"));
-            // todo missing social
+            hunter.setSocial(rs.getString("SOCIAL"));
             hunter.setSex(rs.getString("sex").charAt(0));
             hunter.setHeight(rs.getInt("HEIGHT"));
             hunter.setWeight(rs.getInt("WEIGHT"));
