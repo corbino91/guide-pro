@@ -12,5 +12,6 @@ deploy:
   app: "guidepro"
   env: "guidepro-dev"
   bucket_name: "elasticbeanstalk-us-east-1-996328651507"
+  skip_cleanup: true
 on:
   branch: master
