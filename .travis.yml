@@ -11,6 +11,6 @@ deploy:
   region: "us-east-1"  
   app: "guidepro"
   env: "guidepro-dev"
-#  bucket_name: "the-target-S3-bucket"
+  bucket_name: "elasticbeanstalk-us-east-1-996328651507"
 on:
   branch: master
