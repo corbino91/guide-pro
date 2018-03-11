@@ -2,6 +2,7 @@ package com.bingo.guidepro.model;
 
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Hunter {
     private String guid;
@@ -177,5 +178,43 @@ public class Hunter {
 
     public void setEyeColor(String eyeColor) {
         this.eyeColor = eyeColor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hunter hunter = (Hunter) o;
+        return Objects.equals(guid, hunter.guid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(guid);
+    }
+
+    @Override
+    public String toString() {
+        return "Hunter{" +
+                "guid='" + guid + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleInitial=" + middleInitial +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", cellNumber='" + cellNumber + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", social='" + social + '\'' +
+                ", sex=" + sex +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", hairColor='" + hairColor + '\'' +
+                ", eyeColor='" + eyeColor + '\'' +
+                '}';
     }
 }
