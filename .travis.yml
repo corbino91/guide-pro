@@ -5,13 +5,14 @@ sudo: true
 script: mvn clean package
 deploy:
   provider: elasticbeanstalk
+  skip_cleanup: true
+  app: "guidepro"
+  env: "guidepro-dev"
+  zip_file: 'target/guide-pro-0.0.1-SNAPSHOT.jar'
+  bucket_name: "elasticbeanstalk-us-east-1-996328651507"
+  region: "us-east-1"
   access_key_id: $ACCESSKEYID
   secret_access_key:
     secure: "$SECRETACCESSKEY"
-  region: "us-east-1"  
-  app: "guidepro"
-  env: "guidepro-dev"
-  bucket_name: "elasticbeanstalk-us-east-1-996328651507"
-  skip_cleanup: true
 on:
   branch: master
