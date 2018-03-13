@@ -1,12 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hunters</title>
-    <p>See all hunters <a href="/hunters">here</a></p>
-    <p>Search single hunter <a href="/hunters/id?id=71E92AE5-2267-47C2-A6AE-9FEF536B3166">here</a></p>
+    <title>GuidePro</title>
 </head>
 <body>
+<div id='root'></div>
 
+<script src="https://fb.me/react-15.0.1.js"></script>
+<script src="https://fb.me/react-dom-15.0.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script type="text/babel">
+
+    var App = React.createClass({
+
+        loadEmployeesFromServer: function () {
+            var self = this;
+            $.ajax({
+                url: "http://localhost:8080/hunters"
+            }).then(function (data) {
+                self.setState({employees: data});
+            });
+        },
+
+        getInitialState: function () {
+            return {employees: []};
+        },
+
+        componentDidMount: function () {
+            this.loadEmployeesFromServer();
+        },
+
+        render() {
+            return ( <EmployeeTable employees={this.state.employees}/> );
+        }
+    });
+
+    var Employee = React.createClass({
+        render: function() {
+            return (
+                <tr>
+                    <td>{this.props.employee.firstName}</td>
+                    <td>{this.props.employee.lastName}</td>
+                    <td>{this.props.employee.cellNumber}</td>
+                    <td>{this.props.employee.email}</td>
+                </tr>);
+        }
+    });
+
+    var EmployeeTable = React.createClass({
+        render: function() {
+            var rows = [];
+            this.props.employees.forEach(function(employee) {
+                rows.push(<Employee employee={employee} />);
+            });
+            return (
+                <div className="container">
+                    <table className="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Number</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>{rows}</tbody>
+                    </table>
+                </div>);
+        }
+    });
+    ReactDOM.render(<App />, document.getElementById('root') );
+</script>
 </body>
 </html>
