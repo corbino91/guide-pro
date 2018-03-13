@@ -19,7 +19,7 @@
         loadEmployeesFromServer: function () {
             var self = this;
             $.ajax({
-                url: "http://localhost:8080/hunters"
+                url: "/hunters"
             }).then(function (data) {
                 self.setState({employees: data});
             });
