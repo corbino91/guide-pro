@@ -2,8 +2,9 @@ package com.bingo.guidepro.dao;
 
 import com.bingo.guidepro.model.Hunter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -13,23 +14,28 @@ import java.util.List;
 @Repository
 public class HunterDao {
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<Hunter> getHunters() {
         return jdbcTemplate.query("SELECT * from hunter", new HunterRowMapper());
     }
 
     public Hunter getHunter(String id) {
-        return jdbcTemplate.queryForObject("SELECT * from hunter where guid = ?", new HunterRowMapper(), id);
+        return jdbcTemplate.queryForObject("SELECT * from hunter where guid = :guid",
+                new MapSqlParameterSource("guid", id),
+                new HunterRowMapper());
     }
 
     public Hunter deleteHunter(String id) {
-        return jdbcTemplate.queryForObject("delete from hunter where guid = ?", new HunterRowMapper(), id);
+        return jdbcTemplate.queryForObject("delete from hunter where guid = :guid",
+                new MapSqlParameterSource("guid", id),
+                new HunterRowMapper());
     }
 
     public int add(String firstName) {
         return jdbcTemplate.update("insert into client_info (client_guid, first_name, middle_initial, last_name, email, cell_number, user_name, passwd, address, city, home_state, zip, dob, social, sex, height, weight, hair_color, eye_color) " +
-                "values (UUID(), ?, ?, ?, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)", firstName, "M", "Last");
+                "values (UUID(), :firstName, M, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)",
+                new MapSqlParameterSource("firstName", firstName));
     }
 
     public class HunterRowMapper implements RowMapper<Hunter> {
