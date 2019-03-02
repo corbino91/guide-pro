@@ -55,7 +55,8 @@ public class HunterDao {
             hunter.setZipCode(rs.getString("ZIP"));
             hunter.setDateOfBirth(rs.getDate("DOB"));
             hunter.setSocial(rs.getString("SOCIAL"));
-            hunter.setSex(rs.getString("sex").charAt(0));
+            String sex = rs.getString("sex");
+            hunter.setSex(sex != null ? sex.charAt(0) : 'U');
             hunter.setHeight(rs.getInt("HEIGHT"));
             hunter.setWeight(rs.getInt("WEIGHT"));
             hunter.setHairColor(rs.getString("HAIR_COLOR"));
