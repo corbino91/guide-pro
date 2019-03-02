@@ -1,20 +1,20 @@
 drop table season;
 CREATE TABLE season (
-     id int NOT NULL IDENTITY,
+     id int NOT NULL AUTO_INCREMENT,
      name CHAR(10) NOT NULL UNIQUE,
      PRIMARY KEY (id)
 );
 
 drop table animal;
 CREATE TABLE animal (
-     id int NOT NULL IDENTITY,
+     id int NOT NULL AUTO_INCREMENT,
      name CHAR(25) NOT NULL UNIQUE,
      PRIMARY KEY (id)
 );
 
 drop table hunt_type;
 CREATE TABLE hunt_type (
-     id int NOT NULL IDENTITY,
+     id int NOT NULL AUTO_INCREMENT,
      type CHAR(15) NOT NULL UNIQUE,
      PRIMARY KEY (id)
 );
